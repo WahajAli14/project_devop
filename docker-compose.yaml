@@ -1,0 +1,81 @@
+version: "3"
+services:
+  doctor_mongodb:
+    image: mongo:latest
+    container_name: doctor
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: doctor
+    ports:
+      - 27022:27017
+    networks:
+      - doctor_back_db
+    volumes:
+      - mongo_doc:/data/db
+      - ./doctor_mongo_init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+  appointment_mongodb:
+    image: mongo:latest
+    container_name: appointment
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: appointment
+    ports:
+      - 27021:27017
+    volumes:
+      - mongo_app:/data/db
+      - ./appointment_mongo_init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - appointment_back_db
+
+  appointment_backend:
+    build:
+      context: appointments
+      dockerfile: Dockerfile
+    depends_on:
+      - appointment_mongodb
+    environment:
+      - MONGO_URI=mongodb://admin:password@appointment:27017/?authSource=admin
+    ports:
+      - 7071:7070
+    networks:
+      - appointment_back_db
+      - appointment_back_front
+
+  doctor_backend:
+    build:
+      context: doctors
+      dockerfile: Dockerfile
+    depends_on:
+      - doctor_mongodb
+    environment:
+      - MONGO_URI=mongodb://admin:password@doctor:27017/?authSource=admin
+    ports:
+      - 9090:9090
+    networks:
+      - doctor_back_db
+      - doctor_back_front
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - doctor_backend
+      - appointment_backend
+    env_file: ./frontend/.env
+    ports:
+      - 3000:3000
+    networks:
+      - appointment_back_front
+      - doctor_back_front
+networks:
+  appointment_back_db:
+  doctor_back_db:
+  appointment_back_front:
+  doctor_back_front:
+volumes:
+  mongo_app:
+  mongo_doc:

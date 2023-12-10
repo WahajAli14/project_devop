@@ -35,7 +35,7 @@ jobs:
       run: |
         IMAGE_TAG=${{ steps.generate_version.outputs.new_tag }}
         # Just Image name
-        IMAGE_NAME=wahajali14/frontend
+        IMAGE_NAME=wahajali14/appointment
         #Image ID= Name + Tag
         IMAGE_ID=$IMAGE_NAME:$IMAGE_TAG
         # IMAGE_REPO=$REGISTRY/$IMAGE_ID
@@ -60,8 +60,8 @@ jobs:
     - name: Build and Push Docker Image
       uses: docker/build-push-action@v5.0.0
       with:
-        context: frontend
-        file: ./frontend/Dockerfile
+        context: appointments
+        file: ./appointments/Dockerfile
         # pull: true
         push: true
         tags: ${{ steps.generate_vars.outputs.image }}     

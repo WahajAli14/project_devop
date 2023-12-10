@@ -32,7 +32,5 @@ jobs:
     #   echo 
     - name: Tag Release (vX.Y.Z)
       run: |
-        git config --global user.email "${GH_EMAIL}"
-        git config --global user.name "${GH_USER}"
         git tag ${{ steps.tag_version.outputs.version_tag }}
         git push origin ${{ steps.tag_version.outputs.version_tag }}

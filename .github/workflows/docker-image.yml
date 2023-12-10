@@ -24,33 +24,22 @@ jobs:
         WITH_V: true
         DRY_RUN: true
         DEFAULT_BUMP: "patch"
-    - name: Push tag
-      uses: anothrNick/github-tag-action@1.67.0
-      id: tag_version
-      env:
-        GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
-        WITH_V: true
-         
-    # - name: semantic version
-    #   uses: paulhatch/semantic-version@v5.3.0
+    # - name: Push tag
+    #   uses: anothrNick/github-tag-action@1.67.0
     #   id: tag_version
-    #   with:
-    #     tag_prefix: "v"
-    #     major_pattern: "Breaking Change"
-    #     minor_pattern: "Minor"
-    #     patch_pattern: "Patch"
-    #     version_format: "${major}.${minor}.${patch}"
-    #     change_path: "frontend/"
-    #     namespace: main
-    #     search_commit_body: true
-    #     GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
-        
-    # # # - name: "checkng tags"
-    # # #   run: |
-    # # #   echo 
-    # - name: Tag Release (vX.Y.Z)
-    #   run: |
-    #     git tag ${{ steps.tag_version.outputs.version_tag }}
-    #     git push origin ${{ steps.tag_version.outputs.version_tag }}
     #   env:
-    #      GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+    #     GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+    #     WITH_V: true
+    - name: Generate Vars
+      id: generate_vars
+      run: |
+        IMAGE_TAG=${{ steps.generate_version.outputs.new_tag }}
+        # Just Image name
+        IMAGE_NAME=${{ github.repository }}
+        #Image ID= Name + Tag
+        IMAGE_ID=$IMAGE_NAME:$IMAGE_TAG
+        IMAGE_REPO=$REGISTRY/$IMAGE_ID
+        echo "Image: $IMAGE_REPO"
+        echo "image=$IMAGE_REPO" >>$GITHUB_OUTPUT
+        echo "image_name=$IMAGE_NAME" >>$GITHUB_OUTPUT
+    

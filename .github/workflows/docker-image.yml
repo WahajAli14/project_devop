@@ -57,4 +57,12 @@ jobs:
       run: |
         echo "Image from Output: ${{ steps.generate_vars.outputs.image }}"
         echo "Repo from Output: ${{ steps.generate_vars.outputs.image_name }}"   
+    - name: Build and Push Docker Image
+      uses: docker/build-push-action@v5.0.0
+      with:
+        context: .
+        file: ./Dockerfile
+        pull: true
+        push: true
+        tags: ${{ steps.generate_vars.outputs.image }}     
     

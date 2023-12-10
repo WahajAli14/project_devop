@@ -41,7 +41,7 @@ jobs:
         change_path: "frontend/"
         namespace: main
         search_commit_body: true
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
         
     # # - name: "checkng tags"
     # #   run: |

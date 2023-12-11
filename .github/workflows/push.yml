@@ -68,7 +68,7 @@ jobs:
         echo "Image: $IMAGE_ID"
         # echo "Registry: {{REGISTRY}}"
         IMAGE_LTS=$IMAGE_NAME:latest
-        echo "Image_lts: $IMAGE_LTS"
+        echo "Image_lts=$IMAGE_LTS" >>$GITHUB_OUTPUT 
         echo "image=$IMAGE_ID" >>$GITHUB_OUTPUT
         echo "image_name=$IMAGE_NAME" >>$GITHUB_OUTPUT
     - name: Set up QEMU
@@ -92,4 +92,4 @@ jobs:
         file: ./appointments/Dockerfile
         # pull: true
         push: true
-        tags: ${{ steps.generate_vars.outputs.image }}
+        tags: ${{ steps.generate_vars.outputs.image }},${{ steps.generate_vars.outputs.Image_lts }}

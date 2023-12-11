@@ -36,7 +36,7 @@ jobs:
 
   appointments:
     needs: changes
-    if: ${{ needs.changes.outputs.backend == 'true' }}
+    if: ${{ needs.changes.outputs.appointments == 'true' }}
     runs-on: ubuntu-latest
 
     steps:

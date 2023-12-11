@@ -67,6 +67,8 @@ jobs:
         # IMAGE_REPO=$REGISTRY/$IMAGE_ID
         echo "Image: $IMAGE_ID"
         # echo "Registry: {{REGISTRY}}"
+        IMAGE_LTS=$IMAGE_NAME:latest
+        echo "Image_lts: IMAGE_LTS"
         echo "image=$IMAGE_ID" >>$GITHUB_OUTPUT
         echo "image_name=$IMAGE_NAME" >>$GITHUB_OUTPUT
     - name: Set up QEMU

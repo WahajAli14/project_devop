@@ -1,6 +1,8 @@
 name: versioning
 
 on:
+  push:
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -9,16 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     # Required permissions
     permissions:
-      pull-requests: read
+      pull-requests: write
     # Set job outputs to values from filter step
     outputs:
       doctors: ${{ steps.filter.outputs.doctors }}
       frontend: ${{ steps.filter.outputs.frontend }}
       appointments:  ${{ steps.filter.outputs.appointments}}
     steps:
-    # - uses: actions/checkout@v3
-    #   with:
-    #     fetch-depth: '0'
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: '0'
     
     # For pull requests it's not necessary to checkout the code
     - uses: dorny/paths-filter@v2

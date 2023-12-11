@@ -103,6 +103,8 @@ on:
 jobs:
   changes:
     runs-on: ubuntu-latest
+     env:
+      GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
     # Required permissions
     # permissions:
     #   pull-requests: read

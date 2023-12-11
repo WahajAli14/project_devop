@@ -10,8 +10,8 @@ jobs:
   changes:
     runs-on: ubuntu-latest
     # Required permissions
-    # permissions:
-    #   pull-requests: read
+    permissions:
+      pull-requests: read
     # Set job outputs to values from filter step
     outputs:
       doctors: ${{ steps.filter.outputs.doctors }}
@@ -41,9 +41,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: '0'
+    # - uses: actions/checkout@v3
+    #   with:
+    #     fetch-depth: '0'
     - name: Generate Version
       id: generate_version
       uses: anothrNick/github-tag-action@1.67.0

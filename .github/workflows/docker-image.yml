@@ -18,9 +18,9 @@ jobs:
       frontend: ${{ steps.filter.outputs.frontend }}
       appointments:  ${{ steps.filter.outputs.appointments}}
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: '0'
+    # - uses: actions/checkout@v3
+    #   with:
+    #     fetch-depth: '0'
     
     # For pull requests it's not necessary to checkout the code
     - uses: dorny/paths-filter@v2

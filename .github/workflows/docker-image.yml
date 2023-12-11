@@ -34,7 +34,6 @@ jobs:
           appointments:
             - 'appointments/**'
       
-
   appointments:
     needs: changes
     if: ${{ needs.changes.outputs.appointments == 'true' }}

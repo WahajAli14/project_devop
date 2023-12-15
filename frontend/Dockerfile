@@ -15,6 +15,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY public/* ./public/
-COPY ./.env ./
-COPY ./app.js .
+# COPY ./.env ./
+COPY app.js ./
+
 CMD [ "npm", "start" ]

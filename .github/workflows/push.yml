@@ -96,7 +96,7 @@ jobs:
     - name: Change Docker Compose
       run: |
            # sed -i 's/wahajali14\/appointment:v3.0.0/wahajali14\/appointment:${{steps.generate_vars.outputs.image}}/g' docker-compose.yaml
-           sed -i "s|wahajali14/appointment:v1.0.0|wahajali14/${{ steps.generate_vars.outputs.image }}|g" docker-compose.yaml
+           sed -i "s|wahajali14/appointment:v1.0.0|${{ steps.generate_vars.outputs.image }}|g" docker-compose.yaml
     - name: List files in the directory
       run: ls 
 
@@ -173,7 +173,7 @@ jobs:
     - name: Change Docker Compose
       run: |
            # sed -i 's/wahajali14\/appointment:v3.0.0/wahajali14\/appointment:${{steps.generate_vars.outputs.image}}/g' docker-compose.yaml
-           sed -i "s|wahajali14/doctor:v1.0.0|wahajali14/${{ steps.generate_vars.outputs.image }}|g" docker-compose.yaml
+           sed -i "s|wahajali14/doctor:v1.0.0|${{ steps.generate_vars.outputs.image }}|g" docker-compose.yaml
     - name: List files in the directory
       run: ls 
 

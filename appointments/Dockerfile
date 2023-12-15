@@ -8,7 +8,7 @@ LABEL name="Python Application" \
 WORKDIR /app
 
 EXPOSE 7070
-#testing11243
+#testing11242
 
 env MONGO_URI="mongodb://localhost:27017"
 env MONGO_USERNAME='abc'

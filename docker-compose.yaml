@@ -32,7 +32,7 @@ services:
       - appointment_back_db
 
   appointment_backend:
-    image: wahajali14/appointment:v1.0.0
+    image: wahajali14/appointment:v4.0.0
     container_name: appointment_backend
     depends_on:
       - appointment_mongodb

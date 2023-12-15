@@ -92,4 +92,17 @@ jobs:
         file: ./appointments/Dockerfile
         # pull: true
         push: true
-        tags: ${{ steps.generate_vars.outputs.image }},${{ steps.generate_vars.outputs.Image_lts }}
+        tags: ${{ steps.generate_vars.outputs.image }}
+    - name: Change Docker Compose
+      run: |
+           sed -i 's/wahajali14\/appointment:v1/wahajali14\/appointment:${{steps.generate_vars.outputs.image}}/g' dockercompose.yaml
+           
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "wahajali98@gmail.con"
+        git config --local user.name "WahajAli14"
+        git add docker-compose.yml
+        git commit -m "Update Docker Compose with appointment image"
+        # git config pull.rebase true
+        # git pull
+        git push https://${{secrets.MY_TOKEN}}@github.com/WahajAli14/project_devop.git

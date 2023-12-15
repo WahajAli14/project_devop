@@ -32,7 +32,7 @@ services:
       - appointment_back_db
 
   appointment_backend:
-    image: wahajali14/wahajali14/appointment
+    image: wahajali14/appointment:v1.0.0
     container_name: appointment_backend
     depends_on:
       - appointment_mongodb
@@ -45,9 +45,8 @@ services:
       - appointment_back_front
 
   doctor_backend:
-    build:
-      context: doctors
-      dockerfile: Dockerfile
+    image: wahajali14/doctor:v1.0.0
+    container_name: doctor_backend
     depends_on:
       - doctor_mongodb
     environment:
@@ -58,9 +57,8 @@ services:
       - doctor_back_db
       - doctor_back_front
   frontend:
-    build:
-      context: frontend
-      dockerfile: Dockerfile
+    image: wahajali14/frontend:v1.0.0
+    container_name: frontend
     depends_on:
       - doctor_backend
       - appointment_backend

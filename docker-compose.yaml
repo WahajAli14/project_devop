@@ -57,7 +57,7 @@ services:
       - doctor_back_db
       - doctor_back_front
   frontend:
-    image: wahajali14/frontend:v1.0.0
+    image: wahajali14/frontend:v5.0.0
     container_name: frontend
     depends_on:
       - doctor_backend

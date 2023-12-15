@@ -185,7 +185,7 @@ jobs:
           git config pull.rebase true
           git pull
           git push https://WahajAli14:${{secrets.MY_TOKEN}}@github.com/WahajAli14/project_devop.git
-
+          HEAD:main
   frontend:
     needs: changes
     if: ${{ needs.changes.outputs.frontend == 'true' }}

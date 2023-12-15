@@ -32,9 +32,8 @@ services:
       - appointment_back_db
 
   appointment_backend:
-    build:
-      context: appointments
-      dockerfile: Dockerfile
+    image: wahajali14/appointment:v3.0.0
+    container_name: appointment_backend
     depends_on:
       - appointment_mongodb
     environment:

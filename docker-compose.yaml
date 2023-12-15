@@ -45,7 +45,7 @@ services:
       - appointment_back_front
 
   doctor_backend:
-    image: wahajali14/doctor:v1.0.0
+    image: wahajali14/wahajali14/doctor:v3.7.1
     container_name: doctor_backend
     depends_on:
       - doctor_mongodb

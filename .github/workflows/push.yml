@@ -97,11 +97,14 @@ jobs:
       run: |
            # sed -i 's/wahajali14\/appointment:v3.0.0/wahajali14\/appointment:${{steps.generate_vars.outputs.image}}/g' docker-compose.yaml
            sed -i "s|wahajali14/appointment:v3.0.0|wahajali14/${{ steps.generate_vars.outputs.image_name }}|g" docker-compose.yaml
+    - name: List files in the directory
+      run: ls 
+
     - name: Commit and push changes
       run: |
         git config --local user.email "wahajali98@gmail.con"
         git config --local user.name "WahajAli14"
-        git add project_devop/docker-compose.yaml
+        git add ./docker-compose.yaml
         git commit -m "Update Docker Compose with appointment image"
         # git config pull.rebase true
         # git pull

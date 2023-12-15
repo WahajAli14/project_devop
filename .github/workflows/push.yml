@@ -96,7 +96,7 @@ jobs:
     - name: Change Docker Compose
       run: |
            # sed -i 's/wahajali14\/appointment:v3.0.0/wahajali14\/appointment:${{steps.generate_vars.outputs.image}}/g' docker-compose.yaml
-           sed -i "s|wahajali14/appointment:v3.0.0|wahajali14/${{ steps.generate_vars.outputs.image }}|g" docker-compose.yaml
+           sed -i "s|wahajali14/appointment:v1.0.0|wahajali14/${{ steps.generate_vars.outputs.image }}|g" docker-compose.yaml
     - name: List files in the directory
       run: ls 
 
@@ -165,15 +165,15 @@ jobs:
     - name: Build and Push Docker Image
       uses: docker/build-push-action@v5.0.0
       with:
-        context: appointments
-        file: ./appointments/Dockerfile
+        context: doctors
+        file: ./doctors/Dockerfile
         # pull: true
         push: true
         tags: ${{ steps.generate_vars.outputs.image }}
     - name: Change Docker Compose
       run: |
            # sed -i 's/wahajali14\/appointment:v3.0.0/wahajali14\/appointment:${{steps.generate_vars.outputs.image}}/g' docker-compose.yaml
-           sed -i "s|wahajali14/appointment:v3.0.0|wahajali14/${{ steps.generate_vars.outputs.image }}|g" docker-compose.yaml
+           sed -i "s|wahajali14/doctor:v1.0.0|wahajali14/${{ steps.generate_vars.outputs.image }}|g" docker-compose.yaml
     - name: List files in the directory
       run: ls 
 
@@ -182,7 +182,7 @@ jobs:
         git config --local user.email "wahajali98@gmail.con"
         git config --local user.name "WahajAli14"
         git add ./docker-compose.yaml
-        git commit -m "Update Docker Compose with appointment image"
+        git commit -m "Update Docker Compose with doctors image"
         # git config pull.rebase true
         # git pull
         git push https://WahajAli14:${{secrets.MY_TOKEN}}@github.com/WahajAli14/project_devop.git

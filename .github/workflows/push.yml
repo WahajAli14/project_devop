@@ -95,8 +95,8 @@ jobs:
         tags: ${{ steps.generate_vars.outputs.image }}
     - name: Change Docker Compose
       run: |
-           sed -i 's/wahajali14\/appointment:v3.0.0/wahajali14\/appointment:${{steps.generate_vars.outputs.image}}/g' docker-compose.yaml
-           
+           # sed -i 's/wahajali14\/appointment:v3.0.0/wahajali14\/appointment:${{steps.generate_vars.outputs.image}}/g' docker-compose.yaml
+           sed -i "s|wahajali14/appointment:v3.0.0|wahajali14/${{ steps.generate_vars.outputs.image_name }}|g" docker-compose.yaml
     - name: Commit and push changes
       run: |
         git config --local user.email "wahajali98@gmail.con"

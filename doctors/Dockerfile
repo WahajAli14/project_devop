@@ -6,7 +6,7 @@ LABEL name="Python Application" \
 
 # Create app directory
 WORKDIR /app
-
+# hello
 EXPOSE 9090
 
 env MONGO_URI="mongodb://localhost:27017"

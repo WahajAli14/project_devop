@@ -23,6 +23,10 @@ def getDoctors():
   doctor=list(collections.find({},{'_id': 0}))
   return jsonify(doctor)
 
+@app.route('/healthz', methods=["GET"])
+def getHealth():
+  return 200
+
 # @app.route('/doctor/<id>', methods=["GET"])
 # def getDoctor(id):
 #   id = int(id) - 1

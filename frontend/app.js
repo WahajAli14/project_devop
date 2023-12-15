@@ -19,6 +19,10 @@ app.get("/hello", (req, res) => {
   res.send("Hello world\n");
 });
 
+app.get("/healthz", (req, res) => {
+  res.send(200);
+});
+
 // Define your API endpoints and routes here
 app.get("/api/doctors", async (req, res) => {
   let url = process.env.DOCTORS_SERVICE_URL;

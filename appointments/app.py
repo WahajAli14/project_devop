@@ -23,10 +23,15 @@ def hello():
   greeting = "Hello world!"
   return greeting
 
+@app.route('/healthz', methods=["GET"])
+def getHealths():
+  return "ok"
+
 @app.route('/appointments', methods=["GET"])
 def getAppointments():
   appointment=list(collections.find({},{'_id': 0}))
   return jsonify(appointment)
+
 
 # @app.route('/appointment/<id>', methods=["GET"])
 # def getAppointment(id):

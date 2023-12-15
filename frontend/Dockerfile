@@ -15,6 +15,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY public/* ./public/
+# hello
 # COPY ./.env ./
 COPY app.js ./
 
